@@ -1,13 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ContextTotal from './Context';
+import Filho1 from './Fliho1';
+import Filho2 from './Filho2';
 
 export default function App() {
+  const [total, setTotal] = useState(0);
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <ContextTotal.Provider value={[total, setTotal]}>
+      <View style={styles.container}>
+        <Text>Valor no App.js: {total}</Text>
+        <View style={{flexDirection: 'column'}}>
+          <Filho1 />
+          <Filho2 />
+        </View>
+      </View>
+    </ContextTotal.Provider>
+  )
 }
 
 const styles = StyleSheet.create({
